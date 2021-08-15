@@ -19,7 +19,7 @@ class OSManager:
 
         os.makedirs(os.path.dirname(path), exist_ok = True)
 
-    def create_file(self, path, output = True): #Returns an opened file
+    def create_file(self, path, output = False): #Returns an opened file
 
         self.create_directory(path)
         

@@ -37,7 +37,7 @@ class SupuestosGenerales:
         # file = open("./SupuestosGenerales/Generales/Categorias/categorias.csv","a")
         fileName = "categorias.csv"
         data = [J1,J2]
-        file = OSManager().create_file(f"./SupuestosGenerales/Generales/Categorias/{fileName}")
+        file = OSManager().create_file(f"./SupuestosGenerales/Generales/Categorias/{fileName}", output = True)
 
         # file = OSManager().open_pandas_csv_file(f"./SupuestosGenerales/Generales/Categorias/{fileName}")
         self.grabar_archivo(fileName,file,data)
