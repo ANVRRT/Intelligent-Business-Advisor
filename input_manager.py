@@ -12,9 +12,9 @@ class InputManager:
                 number = int(number)
             elif typeOfNumber == float:
                 number = float(number)
-            return number
+            return number,True
         except ValueError:
-            return False
+            return number,False
 
     def display_message(self, message):
         print(f"\n{message}")
@@ -29,7 +29,7 @@ class InputManager:
                 displayMessage = message + f" [{messageKey} {iter}]: "
             else:
                 displayMessage = message+" "
-            number = isNumber = self.is_number(input(displayMessage), typeOfNumber)
+            number, isNumber = self.is_number(input(displayMessage), typeOfNumber)
 
             if isNumber is not False: 
                 if infLimit is not None and number < infLimit:
