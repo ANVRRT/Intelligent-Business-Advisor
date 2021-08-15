@@ -37,6 +37,7 @@ class InputManager:
                     iter -= 1
                 elif supLimit is not None and number > supLimit:
                     self.display_message(f"Error, el valor {number} debe ser inferior a {supLimit}")
+                    iter -= 1
                 else:
                     numbers.append(number)
             else:
