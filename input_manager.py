@@ -68,7 +68,9 @@ class InputManager:
     
 
 
-#SIMPLE TESTING ENVIRONMENT
+# <-------------------------------------- STARTS SIMPLE TESTING REGION -------------------------------------------->
+# <-------------------------------------- STARTS SIMPLE TESTING REGION -------------------------------------------->
+# <-------------------------------------- STARTS SIMPLE TESTING REGION -------------------------------------------->
 if __name__ == "__main__":
     IM = InputManager()
 
@@ -78,7 +80,9 @@ if __name__ == "__main__":
             print(f"Numero: {numero}")
     else:
         print(f"Numero: {numeros}")
-
+# <--------------------------------------  ENDS SIMPLE TESTING REGION  -------------------------------------------->
+# <--------------------------------------  ENDS SIMPLE TESTING REGION  -------------------------------------------->
+# <--------------------------------------  ENDS SIMPLE TESTING REGION  -------------------------------------------->
 
 
             

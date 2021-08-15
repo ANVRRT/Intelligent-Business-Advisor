@@ -6,9 +6,9 @@ class MainMenu:
         print("*****************************************************")
         print("BIENVENIDO A XIMULATOR")
         print("")
-        print("1) Supuestos generales")
-        print("2) Inversión y Financiamiento")
-        print("3) Proyección financiera")
+        print("1) Supuestos generales")             #CODING
+        print("2) Inversión y Financiamiento")      #NOT CODED
+        print("3) Proyección financiera")           #NOT CODED
         print("4) Salir")
         print("")
         print("*****************************************************")
@@ -28,9 +28,9 @@ class MenuSupuestosGenerales:
             print("*****************************************************")
             print("MENÚ SUPUESTOS GENERALES")
             print("")
-            print("1) Generales")
-            print("2) Costos y gastos")
-            print("3) Ingresos")
+            print("1) Generales")           #CODING
+            print("2) Costos y gastos")     #NOT CODED
+            print("3) Ingresos")            #NOT CODED
             print("4) Regresar")
             print("")
             print("*****************************************************")
@@ -59,10 +59,10 @@ class MenuSupuestosGenerales:
             print("*****************************************************")
             print("MENÚ GENERALES")
             print("")
-            print("1) Categorías")
-            print("2) Inflación de costos y gastos")
-            print("3) Incremento de ventas")
-            print("4) Impuestos/Dividendos/TC")
+            print("1) Categorías")                      #CODED
+            print("2) Inflación de costos y gastos")    #NOT CODED
+            print("3) Incremento de ventas")            #NOT CODED
+            print("4) Impuestos/Dividendos/TC")         #NOT CODED
             print("5) Regresar")
             print("")
             print("*****************************************************")
@@ -120,18 +120,16 @@ class MenuSupuestosGenerales:
                     J1 = "PUBLICIDAD"
                 if selectedOption == 4:
                     J1 = "PPV"
+                if selectedOption == 5:
+                    break
                 # pf.pide_cadena("Ingresa el nombre de tu categoría :",1,15)
                 J2 = InputManager.define_string(message = "Ingresa el nombre de tu categoría:", infLimit = 1, supLimit = 15).upper()
                 registry = J1 + (" " * (SPACE_BETWEEN_HEADERS - len(J1))) + J2
                 validation = GeneralManager.validate_form(data = registry, message = "Ingresa la opción:", headers = ["Tipo","Nombre"], nSpaceBetweenHeaders = SPACE_BETWEEN_HEADERS)
-                
-                # <---------------------------------------------- AQUÍ ME QUEDÉ --------------------------------------------->
-                # <---------------------------------------------- AQUÍ ME QUEDÉ --------------------------------------------->
-                # <---------------------------------------------- AQUÍ ME QUEDÉ --------------------------------------------->
 
-                if validation == True: pass #AQUÍ ME QUEDÉ
+                if validation == True: SupuestosGenerales.agregar_categoria(J1,J2)  #CREATES NEW CATEGORY
+
                 if validation == False: InputManager.display_message("Tu categoría ha sido exitosamente eliminada, ingresala nuevamente")
-
 
         # <--------------------------------------  ENDS CREATE CATEGORY REGION  -------------------------------------------->
         # <--------------------------------------  ENDS CREATE CATEGORY REGION  -------------------------------------------->
@@ -146,10 +144,10 @@ class MenuSupuestosGenerales:
             print("*****************************************************")
             print("MENÚ CATEGORÍAS")
             print("")
-            print("1) Agregar")
-            print("2) Reporte")
-            print("3) Siguiente")
-            print("4) Editar categoría")
+            print("1) Agregar")             #CODED
+            print("2) Reporte")             #NOT CODED
+            print("3) Siguiente")           #NOT CODED
+            print("4) Editar categoría")    #NOT CODED
             print("5) Atrás")
             print("")
             print("*****************************************************")
@@ -158,6 +156,7 @@ class MenuSupuestosGenerales:
 
             OSManager.clear_console_log()
             if selectedOption==1:
+                #VERIFICAR MAX CATEGORIAS
                 agregar()
                 pass
 
@@ -168,10 +167,11 @@ if __name__ == "__main__":
     # Console Menu Initializator
 
     #Initialize objects
-    Menu = MainMenu()                       #Initialize MainMenu class object
-    InputManager = InputManager()           #Initialize InputManager class object
-    GeneralManager = GeneralManager()       #Initialize GeneralManager class object     
-    OSManager = OSManager()                 #Initialize OSManager class object
+    Menu = MainMenu()                          #Initialize MainMenu class object
+    InputManager = InputManager()              #Initialize InputManager class object
+    GeneralManager = GeneralManager()          #Initialize GeneralManager class object     
+    OSManager = OSManager()                    #Initialize OSManager class object
+
 
     OSManager.clear_console_log()
     selectedOption = 0
@@ -179,10 +179,12 @@ if __name__ == "__main__":
         selectedOption = Menu.menu_ximulator()
         OSManager.clear_console_log()
         if selectedOption == 1: #Supuestos Generales
+            SupuestosGenerales = SupuestosGenerales()           #Initialize SupuestosGenerales class object
 
             #Open Supuestos Generales Menu
-            SupuestosGenerales = MenuSupuestosGenerales()
-            SupuestosGenerales.main_menu()
+            MenuSupuestosGenerales = MenuSupuestosGenerales()   #Initialize MenuSupuestosGenerales class object
+            MenuSupuestosGenerales.main_menu()
+
             # InputManager.display_message("TESTING")
         
 
