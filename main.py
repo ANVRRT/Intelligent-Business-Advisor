@@ -127,7 +127,13 @@ class MenuSupuestosGenerales:
                 registry = J1 + (" " * (SPACE_BETWEEN_HEADERS - len(J1))) + J2
                 validation = GeneralManager.validate_form(data = registry, message = "Ingresa la opción:", headers = ["Tipo","Nombre"], nSpaceBetweenHeaders = SPACE_BETWEEN_HEADERS)
 
-                if validation == True: SupuestosGenerales.agregar_categoria(J1,J2)  #CREATES NEW CATEGORY
+                if validation == True: #CREATES NEW CATEGORY
+                    errorMessage = SupuestosGenerales.add_category(J1,J2)
+                    if (errorMessage == "CAT_LIMIT"): 
+                        InputManager.display_message("Has excedido el límite de categorías, edita o elimina una para continuar")
+                    else:
+                        InputManager.display_message("Tu categoría ha sido exitosamente guardada")
+
 
                 if validation == False: InputManager.display_message("Tu categoría ha sido exitosamente eliminada, ingresala nuevamente")
 
