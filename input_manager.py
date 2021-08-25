@@ -6,7 +6,7 @@ class InputManager:
     def __init__(self):
         pass
 
-    def is_number(self, number, typeOfNumber = int):
+    def is_number(number, typeOfNumber = int):
         try:
             if typeOfNumber == int:
                 number = int(number)
@@ -16,11 +16,11 @@ class InputManager:
         except ValueError:
             return number,False
 
-    def display_message(self, message):
+    def display_message(message):
         print(f"\n{message}")
         input("\nEnter para continuar\n")
 
-    def define_numbers(self, message = "", messageKey="", infLimit = None, supLimit = None, quantity = 1,typeOfNumber= int):
+    def define_numbers(message = "", messageKey="", infLimit = None, supLimit = None, quantity = 1,typeOfNumber= int):
 
         numbers = []
         iter = 0
@@ -29,19 +29,19 @@ class InputManager:
                 displayMessage = message + f" [{messageKey} {iter}]: "
             else:
                 displayMessage = message+" "
-            number, isNumber = self.is_number(input(displayMessage), typeOfNumber)
+            number, isNumber = InputManager.is_number(input(displayMessage), typeOfNumber)
 
             if isNumber is not False: 
                 if infLimit is not None and number < infLimit:
-                    self.display_message(f"Error, el valor {number} debe ser superior a {infLimit}")
+                    InputManager.display_message(f"Error, el valor {number} debe ser superior a {infLimit}")
                     iter -= 1
                 elif supLimit is not None and number > supLimit:
-                    self.display_message(f"Error, el valor {number} debe ser inferior a {supLimit}")
+                    InputManager.display_message(f"Error, el valor {number} debe ser inferior a {supLimit}")
                     iter -= 1
                 else:
                     numbers.append(number)
             else:
-                self.display_message(f"Error, el valor {number} no es un elemento aceptado")
+                InputManager.display_message(f"Error, el valor {number} no es un elemento aceptado")
                 iter -= 1
 
             iter += 1
@@ -51,13 +51,13 @@ class InputManager:
         else:
             return numbers[0]
     
-    def define_string(self, message ="", infLimit = None, supLimit = None):
+    def define_string(message ="", infLimit = None, supLimit = None):
         while True:
             string = input(message+" ")
             if infLimit is not None and len(string) < infLimit:
-                self.display_message(f"Error, la longitud de '{string}' debe ser superior a {infLimit}")
+                InputManager.display_message(f"Error, la longitud de '{string}' debe ser superior a {infLimit}")
             elif supLimit is not None and len(string) > supLimit:
-                self.display_message(f"Error, la longitud de '{string}' debe ser inferior a {supLimit}")
+                InputManager.display_message(f"Error, la longitud de '{string}' debe ser inferior a {supLimit}")
             else:
                 return string
 
@@ -72,9 +72,9 @@ class InputManager:
 # <-------------------------------------- STARTS SIMPLE TESTING REGION -------------------------------------------->
 # <-------------------------------------- STARTS SIMPLE TESTING REGION -------------------------------------------->
 if __name__ == "__main__":
-    IM = InputManager()
 
-    numeros = IM.define_numbers(message="Ingresa tu número", messageKey="Número",quantity=5, typeOfNumber=float)
+
+    numeros = InputManager.define_numbers(message="Ingresa tu número", messageKey="Número",quantity=5, typeOfNumber=float)
     if isinstance(numeros,Iterable):
         for numero in numeros:
             print(f"Numero: {numero}")

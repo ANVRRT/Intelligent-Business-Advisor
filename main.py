@@ -171,12 +171,11 @@ class MenuSupuestosGenerales:
 if __name__ == "__main__":
 
     # Console Menu Initializator
-
     #Initialize objects
     Menu = MainMenu()                          #Initialize MainMenu class object
-    InputManager = InputManager()              #Initialize InputManager class object
-    GeneralManager = GeneralManager()          #Initialize GeneralManager class object     
-    OSManager = OSManager()                    #Initialize OSManager class object
+    # InputManager = InputManager()              #Initialize InputManager class object
+    # GeneralManager = GeneralManager()          #Initialize GeneralManager class object     
+    # OSManager = OSManager()                    #Initialize OSManager class object
 
 
     OSManager.clear_console_log()
