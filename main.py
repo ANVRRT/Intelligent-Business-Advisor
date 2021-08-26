@@ -59,7 +59,7 @@ class MenuSupuestosGenerales:
             print("*****************************************************")
             print("MENÚ GENERALES")
             print("")
-            print("1) Categorías")                      #CODED
+            print("1) Categorías")                      #CODED              #MISSING DELETE CATEGORY
             print("2) Inflación de costos y gastos")    #NOT CODED
             print("3) Incremento de ventas")            #NOT CODED
             print("4) Impuestos/Dividendos/TC")         #NOT CODED
@@ -70,7 +70,7 @@ class MenuSupuestosGenerales:
             selectedOption = InputManager.define_numbers(message="Ingresa el número correspondientes a tu selección:", infLimit = 1, supLimit = 5,typeOfNumber = int)
             OSManager.clear_console_log()
 
-            if selectedOption==1:
+            if selectedOption == 1:                                                                                 #CATEGORY MENU OPTION
                 selectedOption = self.menu_categorias()
                 
                 if selectedOption == 2:
@@ -96,10 +96,11 @@ class MenuSupuestosGenerales:
         # <-------------------------------------- STARTS CREATE CATEGORY REGION -------------------------------------------->
         # <-------------------------------------- STARTS CREATE CATEGORY REGION -------------------------------------------->
         
-        def agregar():
+        def agregar(editMode = False):
             selectedOption = 0
             SPACE_BETWEEN_HEADERS = 12
             while selectedOption != 5:
+                OSManager.clear_console_log()
                 print("")
                 print("*****************************************************")
                 print("MENÚ DEFINICIÓN DE CATEGORÍA")
@@ -128,6 +129,7 @@ class MenuSupuestosGenerales:
                 validation = GeneralManager.validate_form(data = registry, message = "Ingresa la opción:", headers = ["Tipo","Nombre"], nSpaceBetweenHeaders = SPACE_BETWEEN_HEADERS)
 
                 if validation == True: #CREATES NEW CATEGORY
+                    if editMode: return (J1,J2)
                     errorMessage = SupuestosGenerales.add_category(J1,J2)
                     if (errorMessage == "CAT_LIMIT"): 
                         InputManager.display_message("Has excedido el límite de categorías, edita o elimina una para continuar")
@@ -141,6 +143,35 @@ class MenuSupuestosGenerales:
         # <--------------------------------------  ENDS CREATE CATEGORY REGION  -------------------------------------------->
         # <--------------------------------------  ENDS CREATE CATEGORY REGION  -------------------------------------------->
 
+        # <-------------------------------------- STARTS SHOW REPORT REGION -------------------------------------------->
+        # <-------------------------------------- STARTS SHOW REPORT REGION -------------------------------------------->
+        # <-------------------------------------- STARTS SHOW REPORT REGION -------------------------------------------->
+        def reporte():
+            # report = pd.read_csv()
+            report = OSManager.open_pandas_csv_file("./SupuestosGenerales/Generales/Categorias/categorias.csv")
+            GeneralManager.print_report(report)
+
+        # <--------------------------------------  ENDS SHOW REPORT REGION  -------------------------------------------->
+        # <--------------------------------------  ENDS SHOW REPORT REGION  -------------------------------------------->
+        # <--------------------------------------  ENDS SHOW REPORT REGION  -------------------------------------------->
+
+
+        # <-------------------------------------- STARTS EDIT CATEGORY REGION -------------------------------------------->
+        # <-------------------------------------- STARTS EDIT CATEGORY REGION -------------------------------------------->
+        # <-------------------------------------- STARTS EDIT CATEGORY REGION -------------------------------------------->
+        def editar_categoria():
+            categoryNumber = InputManager.define_numbers(message="Ingresa el número correspondientes a tu selección:", infLimit = 1, supLimit=10,typeOfNumber = int)
+
+            try:
+                J1, J2 = agregar(editMode = True)
+                errorMessage = SupuestosGenerales.edit_category(categoryNumber, J1, J2)
+            except:
+                return
+            
+
+        # <--------------------------------------  ENDS EDIT CATEGORY REGION  -------------------------------------------->
+        # <--------------------------------------  ENDS EDIT CATEGORY REGION  -------------------------------------------->
+        # <--------------------------------------  ENDS EDIT CATEGORY REGION  -------------------------------------------->
 
         selectedOption=0
         cont_cat=0
@@ -151,20 +182,31 @@ class MenuSupuestosGenerales:
             print("MENÚ CATEGORÍAS")
             print("")
             print("1) Agregar")             #CODED
-            print("2) Reporte")             #NOT CODED
-            print("3) Siguiente")           #NOT CODED
-            print("4) Editar categoría")    #NOT CODED
+            print("2) Reporte")             #CODED
+            print("3) Editar categoría")    #CODED
+            print("4) Siguiente")           #CODED
             print("5) Atrás")
             print("")
             print("*****************************************************")
-            # op=pf.pide_numero("Ingresa el número correspondientes a tu selección: ",1,5,"int")
             selectedOption = InputManager.define_numbers(message="Ingresa el número correspondientes a tu selección:", infLimit = 1, supLimit=5,typeOfNumber = int)
 
             OSManager.clear_console_log()
-            if selectedOption==1:
-                #VERIFICAR MAX CATEGORIAS
+            if selectedOption == 1: # Add category
                 agregar()
-                pass
+                
+            if selectedOption == 2: # Print report
+                reporte()
+                InputManager.display_message("")
+
+            if selectedOption == 3:
+                reporte()
+                print("")
+                editar_categoria()
+            
+            if selectedOption == 4:
+                return 2
+            
+
 
 
 

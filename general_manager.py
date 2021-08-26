@@ -26,6 +26,12 @@ class GeneralManager:
         selectedOption = InputManager.define_numbers(message="Ingresa la opción:", infLimit = 1, supLimit = 2,typeOfNumber = int)
         if selectedOption == 1: return True
         else: return False
+    
+    def print_report(report):
+        blankIndex = [''] * len(report)
+        report.index = blankIndex
+
+        print(report)
 
         
 
